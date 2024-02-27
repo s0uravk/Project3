@@ -13,6 +13,7 @@
 
 
 
+<<<<<<< HEAD
 
 
 
@@ -59,3 +60,21 @@ RENAME COLUMN "4. close" TO "Close";
 
 ALTER TABLE "Automotive"
 RENAME COLUMN "5. volume" TO "Volume";
+=======
+-- Schema for Finance Table
+CREATE TABLE "Finance" (
+    "id" SERIAL, 
+    "Date" Date   NOT NULL,
+    "Open" FLOAT   NOT NULL,
+    "High" FLOAT   NOT NULL,
+    "Low" FLOAT   NOT NULL,
+    "Close" FLOAT   NOT NULL,
+    "Adj Close" FLOAT   NOT NULL,
+    "Volume" FLOAT NOT NULL,
+    "Ticker" VARCHAR(10)   NOT NULL,
+    CONSTRAINT "pk_Finance" PRIMARY KEY (
+        "id"
+     )
+);
+ALTER TABLE "Finance" DROP COLUMN "Adj Close";
+>>>>>>> finance_sourav
