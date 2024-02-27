@@ -42,7 +42,7 @@ def stock_data():
         Stocks.Low,
         Stocks.Close]
     
-    rawData = session.query(*sel).limit(1000)
+    rawData = session.query(*sel)
 
     data = {}
     ls = []
