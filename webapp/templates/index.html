@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Citi Bike</title>
+  <title>Stock Data Analysis</title>
 
   <!-- D3 library -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
 
-  <!-- Leaflet CSS -->
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
-  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
-  crossorigin=""/>
+  <!-- Plotly Library -->
+  <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+  <script src ="https://cdn.jsdelivr.net/npm/d3@7"></script>
+
   <!-- Our CSS -->
   <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
+  <div class="container">    
 
   <!-- The div that holds our map -->
-  <div id="map"></div>
-
+  <div id="line_chart"></div>
+</div>
   <!-- Our JavaScript file -->
-  <script type="text/javascript" src="static/js/logic.js"></script>
+  <script src="{{url_for('static', filename = 'js/logic.js')}}"></script>
 </body>
 
 </html>
