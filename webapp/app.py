@@ -1,7 +1,5 @@
 # Import the dependencies.
 
-# Import the dependencies.
-
 import numpy as np
 import pandas as pd
 from datetime import datetime, timedelta
@@ -10,10 +8,9 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine,inspect
 from flask import Flask, json, jsonify, render_template
-from config import username, password
+from config import username, password, host_address
 
-cxn_string = f'postgresql://{username}:{password}@localhost:5432/stocks_database'
-
+cxn_string = 'postgresql+psycopg2://stock_analysis_user:b2Qc7nHf8bW60JjeftiuI2gkZWmGFjxT@dpg-cncljaev3ddc73c7nbjg-a.oregon-postgres.render.com/stock_analysis'
 # Create the SQLAlchemy engine
 engine = create_engine(cxn_string, echo = False)
 
@@ -25,7 +22,7 @@ Base.prepare(autoload_with= engine)
 # Print the table names
 print(Base.classes.keys())
 
-Stocks = Base.classes.Stocks
+Stocks = Base.classes.Finance
 
 app = Flask(__name__)
 
@@ -43,8 +40,7 @@ def stock_data():
         Stocks.Open,
         Stocks.High,
         Stocks.Low,
-        Stocks.Close,
-        Stocks.adjclose]
+        Stocks.Close]
     
     rawData = session.query(*sel).limit(1000)
 
@@ -58,15 +54,11 @@ def stock_data():
             'Open' : d.Open,
             'High' : d.High,
             'Low' : d.Low,
-            'Close' : d.Close,
-            'Adj Close' : d.adjclose
+            'Close' : d.Close
         }
         ls.append(data)
     
-    session.close()
-
-    
-
+    session.close()  
     return(jsonify(ls))
 
 
