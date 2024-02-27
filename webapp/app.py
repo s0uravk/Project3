@@ -10,7 +10,7 @@ from sqlalchemy import create_engine,inspect
 from flask import Flask, json, jsonify, render_template
 from config import username, password, host_address
 
-cxn_string = 'postgresql+psycopg2://stock_analysis_user:b2Qc7nHf8bW60JjeftiuI2gkZWmGFjxT@dpg-cncljaev3ddc73c7nbjg-a.oregon-postgres.render.com/stock_analysis'
+cxn_string = f'postgresql+psycopg2://{username}:{password}@{host_address}/stock_analysis'
 # Create the SQLAlchemy engine
 engine = create_engine(cxn_string, echo = False)
 
