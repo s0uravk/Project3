@@ -13,7 +13,7 @@
 
 
 
-
+-- Schema for Finance Table
 CREATE TABLE "Finance" (
     "id" SERIAL, 
     "Date" Date   NOT NULL,
