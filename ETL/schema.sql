@@ -27,7 +27,6 @@ CREATE TABLE "Technology" (
 
 
 
-<<<<<<< HEAD
 
 
 
@@ -45,6 +44,7 @@ CREATE TABLE "Technology" (
 
 
 
+-- Schema for Automotive table
 CREATE TABLE "Automotive" (
     "date" Date   NOT NULL,
     "1. open" FLOAT   NOT NULL,
@@ -74,8 +74,8 @@ RENAME COLUMN "4. close" TO "Close";
 
 ALTER TABLE "Automotive"
 RENAME COLUMN "5. volume" TO "Volume";
-=======
--- Schema for Finance Table
+
+-- Schema for Finance table
 CREATE TABLE "Finance" (
     "id" SERIAL, 
     "Date" Date   NOT NULL,
@@ -91,4 +91,4 @@ CREATE TABLE "Finance" (
      )
 );
 ALTER TABLE "Finance" DROP COLUMN "Adj Close";
->>>>>>> finance_sourav
+
