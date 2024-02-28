@@ -1,7 +1,27 @@
-url = '/api/v1.0/stock_data'
-d3.json(url).then(function (response){
+function init(){
+  let url = '/api/v1.0/stock_data'
+  d3.json(url).then(function (response){
 
-   createChart(response, 'WD')
+    infoPanel('WD')
+    createChart(response, 'WD');
+  })
+}
+
+function optionChanged(){
+  let url = '/api/v1.0/stock_data'
+  d3.json(url).then(function (response){
+
+    let selDataset = d3.select('#selDataset').property('value');
+
+    infoPanel(selDataset);
+    createChart(response, selDataset);
+  })
+}
+//temporary arr object to hold ticker values
+tickers = ["WD", "PFSI", "LDI", "GHI", "COOP", "AFL", "HIG", "PRU", "ALL", "PGR", "MS", "BLK", "GS", "TROW", "BEN", "V", "MA", "AXP", "DFS", "COF"];
+
+tickers.forEach(ticker => {
+  d3.select('#selDataset').append('option').text(ticker).attr('value', ticker)
 })
 
 function createChart(data, dataset){
@@ -24,16 +44,15 @@ function createChart(data, dataset){
         theme: "light2",
         exportEnabled: true,
         title:{
-          text:"StockChart with Date-Time Axis"
+          text:"Stock Performance"
         },
         subtitles: [{
           text: `${dataset} Price (in USD)`
         }],
-        rangeChanging: intervalTypeChanger,
         charts: [{
           axisX: {
             tickThickness: 0,
-          margin: 10,
+            margin: 10,
           labelFormatter: function(e) {
             return "";
           },
@@ -69,6 +88,34 @@ function createChart(data, dataset){
         }
       });
 
+    d3.select('line_chart').html('');
+
     stockChart.render();
-      
-}
+
+};
+
+function infoPanel(dataset){
+  
+  summaryUrl = '/api/v1.0/summary';
+
+  d3.json(summaryUrl).then(response =>{
+
+    console.log(response)
+    // Extracting keys and values for the selected dataset
+    let demoArrKey = Object.keys(response.filter(data => data.Ticker == dataset)[0]);
+    let demoArrVal = Object.values(response.filter(data => data.Ticker == dataset)[0]);   
+
+    d3.select('#info').html('');
+
+  for (let i = 0; i < demoArrKey.length; i++) {
+    d3.select('#info').append('div').text(`${demoArrKey[i]} : ${demoArrVal[i]}`)
+  }
+
+  })      
+};
+
+// Initialize the visualization
+init();
+
+// Event listener for dropdown change
+d3.selectAll("#selDataset").on("change", optionChanged);
