@@ -12,4 +12,4 @@ CREATE TABLE "Technology" (
 --     CONSTRAINT "pk_Stocks" PRIMARY KEY (
 --         "id"
 --      )
-);
+);  
