@@ -33,49 +33,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- Schema for Finance Table
+-- Schema for Finance Data Table
 CREATE TABLE "Finance" (
     "Date" Date   NOT NULL,
     "Open" FLOAT   NOT NULL,
