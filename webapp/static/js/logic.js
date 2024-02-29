@@ -2,8 +2,8 @@ function init(){
   let url = '/api/v1.0/stock_data'
   d3.json(url).then(function (response){
 
-    infoPanel('WD')
-    createChart(response, 'WD');
+    infoPanel('AAPL')
+    createChart(response, 'AAPL');
   })
 }
 

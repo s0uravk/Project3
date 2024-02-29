@@ -23,6 +23,7 @@ Base.prepare(autoload_with= engine)
 print(Base.classes.keys())
 
 Stocks = Base.classes.Final_Data
+Summary = Base.classes.Summary
 
 app = Flask(__name__)
 
@@ -80,6 +81,8 @@ def rangeData(ticker, start, end):
     
     rawData = session.query(*sel).filter(Stocks.Ticker == ticker).filter(Stocks.Date >= start).filter(Stocks.Date <= end)
 
+    session.close() 
+
     data = {}
     ls = []
 
@@ -95,37 +98,41 @@ def rangeData(ticker, start, end):
         }
         ls.append(data)
     
-    session.close()  
     return(jsonify(ls))
 
 @app.route('/api/v1.0/summary')
 def summaryData():
     session = Session(bind = engine)
 
-    tickers = session.query(Stocks.Ticker.distinct()).all()
+    sel = [
+        Summary.Ticker,
+        Summary.Initial_Open,
+        Summary.Final_Close,
+        Summary.Total_Change,
+        Summary.Percentage_Change,
+        Summary.Average_Volume
+        ]
+    
+    rawData = session.query(*sel)
 
-    data = []
-
-    for ticker in tickers:
-        ticker_data = {}
-        ticker_data['Ticker'] = ticker[0]
-        
-        start_date = session.query(func.min(Stocks.Date)).filter(Stocks.Ticker == ticker[0]).first()[0]
-        end_date = session.query(func.max(Stocks.Date)).filter(Stocks.Ticker == ticker[0]).first()[0]
-
-        initial_open = session.query(Stocks.Open).filter(Stocks.Date == start_date, Stocks.Ticker == ticker[0]).first()
-        final_close = session.query(Stocks.Close).filter(Stocks.Date == end_date, Stocks.Ticker == ticker[0]).first()
-        avg_volume = session.query(func.avg(Stocks.Volume)).filter(Stocks.Ticker == ticker[0]).first()
-        
-        ticker_data['Initial Open'] = round(initial_open[0], 2) if initial_open else None
-        ticker_data['Final Close'] = round(final_close[0], 2) if final_close else None
-        ticker_data['Total Change'] = round((final_close[0] - initial_open[0]), 2) if initial_open and final_close else None
-        ticker_data['Percentage Change'] = "{:.2f}%".format(((final_close[0] - initial_open[0])*100)/ initial_open[0]) if initial_open and final_close else None
-        ticker_data['Average Volume'] = round(avg_volume[0], 2) if avg_volume else None
-        
-        data.append(ticker_data)
     session.close()
-    return jsonify(data)
+
+    data = {}
+    ls = []
+
+    for d in rawData:
+        data = {
+            'Ticker' : d.Ticker,
+            'Initial Open' : d.Initial_Open,
+            'Final Close' : d.Final_Close,
+            'Total Change' : round(d.Total_Change,2),
+            'Percentage Change' : f'{round(d.Percentage_Change,2)}%',
+            'Average Volume' : round(d.Average_Volume,2)
+        }
+        ls.append(data)
+    
+    session.close()  
+    return(jsonify(ls))
 
 if __name__ == '__main__':
     app.run(debug = True)
