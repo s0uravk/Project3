@@ -29,7 +29,7 @@
 
 
 
-
+-- Create Automotive Table
 CREATE TABLE "Automotive" (
     "date" Date   NOT NULL,
     "1. open" FLOAT   NOT NULL,
