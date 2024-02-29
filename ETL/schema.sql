@@ -1,7 +1,6 @@
 DROP TABLE IF EXISTS "Technology";
 
 CREATE TABLE "Technology" (
---     "id" SERIAL,
     "Date" Date   NOT NULL,
     "Open" FLOAT   NOT NULL,
     "High" FLOAT   NOT NULL,
@@ -9,7 +8,15 @@ CREATE TABLE "Technology" (
     "Close" FLOAT   NOT NULL,
     "Volume" FLOAT   NOT NULL,
     "Ticker" VARCHAR(10)   NOT NULL
---     CONSTRAINT "pk_Stocks" PRIMARY KEY (
---         "id"
---      )
+);
+
+-- This table stores healthcare data
+CREATE TABLE "Healthcare" (
+    "date" Date   NOT NULL,
+    "1. open" FLOAT   NOT NULL,
+    "2. high" FLOAT   NOT NULL,
+    "3. low" FLOAT   NOT NULL,
+    "4. close" FLOAT   NOT NULL,
+    "5. volume" FLOAT   NOT NULL,
+    "Ticker" VARCHAR(10)   NOT NULL
 );  
