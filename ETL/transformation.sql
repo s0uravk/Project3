@@ -1,6 +1,7 @@
 SELECT * FROM "Automotive";
 SELECT * FROM "Finance";
 SELECT * FROM "Technology";
+SELECT * FROM "Healthcare";
 
 CREATE TABLE "Combined_data" (
     "Date" Date   NOT NULL,
@@ -17,7 +18,9 @@ INSERT INTO "Combined_data"
     UNION ALL
     SELECT * FROM "Technology"
     UNION ALL
-    SELECT Date, Open, High, Low, Close, Volume, Ticker FROM "Finance";
+    SELECT * FROM "Finance"
+	UNION ALL
+	SELECT * FROM "Healthcare" ;
 	
 SELECT * FROM "Combined_data";
 
@@ -63,3 +66,5 @@ SELECT "Date", "Open", "High", "Low", "Close", "Volume", "Ticker",
 		ELSE NULL
 	END AS "Sector"
 	FROM "Combined_data";
+	
+SELECT * FROM "Final_Data";
