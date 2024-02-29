@@ -13,7 +13,7 @@
 
 
 
--- This table stores healthcare data
+-- schema for healthcare data
 CREATE TABLE "Healthcare" (
     "date" Date   NOT NULL,
     "1. open" FLOAT   NOT NULL,
