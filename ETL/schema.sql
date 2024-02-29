@@ -20,3 +20,14 @@ CREATE TABLE "Healthcare" (
     "5. volume" FLOAT   NOT NULL,
     "Ticker" VARCHAR(10)   NOT NULL
 );  
+
+-- Create Automotive Table
+CREATE TABLE "Automotive" (
+    "date" Date   NOT NULL,
+    "1. open" FLOAT   NOT NULL,
+    "2. high" FLOAT   NOT NULL,
+    "3. low" FLOAT   NOT NULL,
+    "4. close" FLOAT   NOT NULL,
+    "5. volume" FLOAT   NOT NULL,
+    "Ticker" VARCHAR(10)   NOT NULL
+);  
