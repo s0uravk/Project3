@@ -20,7 +20,7 @@ engine = create_engine(cxn_string, echo = False)
 Base = automap_base()
 
 # Reflect all tables from the database schema
-Base.prepare(autoload_with= engine)
+Base.prepare(autoload_with = engine)
 
 # Print the table names
 print(Base.classes.keys())
