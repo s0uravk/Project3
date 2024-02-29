@@ -1,2 +1,5 @@
+ETL/config.py
+ETL/raw_HealtETL/config.py
+Automotive.csv
 webapp/config.py
 ETL/Financial_stock_data.csv
