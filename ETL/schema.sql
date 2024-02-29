@@ -29,6 +29,20 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Create Automotive Table
 CREATE TABLE "Automotive" (
     "date" Date   NOT NULL,
