@@ -22,7 +22,7 @@ Base.prepare(autoload_with= engine)
 # Print the table names
 print(Base.classes.keys())
 
-Stocks = Base.classes.Finance
+Stocks = Base.classes.Final_Data
 
 app = Flask(__name__)
 

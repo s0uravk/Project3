@@ -13,9 +13,70 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 -- Schema for Finance Table
 CREATE TABLE "Finance" (
-    "id" SERIAL, 
     "Date" Date   NOT NULL,
     "Open" FLOAT   NOT NULL,
     "High" FLOAT   NOT NULL,
@@ -23,9 +84,6 @@ CREATE TABLE "Finance" (
     "Close" FLOAT   NOT NULL,
     "Adj Close" FLOAT   NOT NULL,
     "Volume" FLOAT NOT NULL,
-    "Ticker" VARCHAR(10)   NOT NULL,
-    CONSTRAINT "pk_Finance" PRIMARY KEY (
-        "id"
-     )
+    "Ticker" VARCHAR(10)   NOT NULL
 );
 ALTER TABLE "Finance" DROP COLUMN "Adj Close";
