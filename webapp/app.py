@@ -10,9 +10,9 @@ from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
 from sqlalchemy import create_engine,inspect
 from flask import Flask, json, jsonify, render_template
-from config import username, password
+from config import username, password, host_address
 
-cxn_string = f'postgresql://{username}:{password}@localhost:5432/stocks_database'
+cxn_string = f'postgresql+psycopg2://{username}:{password}@{host_address}/stock_analysis'
 
 # Create the SQLAlchemy engine
 engine = create_engine(cxn_string, echo = False)
@@ -37,14 +37,15 @@ def index():
 def stock_data():
     session = Session(bind = engine)
 
-    sel = [Stocks.Ticker,
+    sel = [
         Stocks.Date,
         Stocks.Ticker,
         Stocks.Open,
         Stocks.High,
         Stocks.Low,
         Stocks.Close,
-        Stocks.adjclose]
+        Stocks.Volume
+        ]
     
     rawData = session.query(*sel).limit(1000)
 
@@ -59,14 +60,11 @@ def stock_data():
             'High' : d.High,
             'Low' : d.Low,
             'Close' : d.Close,
-            'Adj Close' : d.adjclose
+            'Volume' : d.Volume
         }
         ls.append(data)
     
     session.close()
-
-    
-
     return(jsonify(ls))
 
 
