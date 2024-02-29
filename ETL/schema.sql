@@ -32,7 +32,6 @@
 
 
 
-
 -- Schema for Finance Data Table
 CREATE TABLE "Finance" (
     "Date" Date   NOT NULL,
