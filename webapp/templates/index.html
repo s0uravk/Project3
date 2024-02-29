@@ -2,26 +2,36 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Stock Data Analysis</title>
 
   <!-- D3 library -->
   <script src="https://d3js.org/d3.v7.min.js"></script>
 
-  <!-- Plotly Library -->
-  <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
-  <script src ="https://cdn.jsdelivr.net/npm/d3@7"></script>
+  <!-- Plotly library -->
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  
+  <!-- Heatmap library -->
+  <script src="https://unpkg.com/heatmap.js"></script>
 
-  <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
-  <div class="container">    
+  <h1>Stock Correlation Heatmap</h1>
+  <div class="row">
+    <!-- <div class="col-md-2"> -->
+      <!-- <div class="well"> -->
+        <h3>Industry</h3>
+        <select id="selDataset" onchange="optionChanged(this.value)"></select>
+        <!-- <div class="col-md-10"> -->
+          <div id="heatmap" style="width: 800px; height: 600px;"></div>
+      
+  </div>  
 
-  <!-- The div that holds our map -->
-  <div id="line_chart"></div>
-</div>
+  <!-- Container for the heatmap -->
+  <!-- <div id="heatmapContainer" style="width: 800px; height: 600px;"></div> -->
   <!-- Our JavaScript file -->
-  <script src="{{url_for('static', filename = 'js/logic.js')}}"></script>
+  <!-- <script src="{{url_for('static', filename = 'js/logic.js')}}"></script> -->
+  <script src="{{url_for('static', filename = 'js/logic1.js')}}"></script>
 </body>
 
 </html>
