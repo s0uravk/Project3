@@ -101,11 +101,8 @@ def rangeData(ticker, start, end):
 @app.route('/api/v1.0/summary')
 def summaryData():
     session = Session(bind = engine)
-    start_date = session.query(func.min(Stocks.Date))
-    end_date = session.query(func.max(Stocks.Date))
 
-    tickers = session.query(Stocks.Ticker).filter(Stocks.Date == start_date).all()
-    session.close()
+    tickers = session.query(Stocks.Ticker.distinct()).all()
 
     data = []
 
@@ -113,6 +110,9 @@ def summaryData():
         ticker_data = {}
         ticker_data['Ticker'] = ticker[0]
         
+        start_date = session.query(func.min(Stocks.Date)).filter(Stocks.Ticker == ticker[0]).first()[0]
+        end_date = session.query(func.max(Stocks.Date)).filter(Stocks.Ticker == ticker[0]).first()[0]
+
         initial_open = session.query(Stocks.Open).filter(Stocks.Date == start_date, Stocks.Ticker == ticker[0]).first()
         final_close = session.query(Stocks.Close).filter(Stocks.Date == end_date, Stocks.Ticker == ticker[0]).first()
         avg_volume = session.query(func.avg(Stocks.Volume)).filter(Stocks.Ticker == ticker[0]).first()
@@ -124,7 +124,7 @@ def summaryData():
         ticker_data['Average Volume'] = round(avg_volume[0], 2) if avg_volume else None
         
         data.append(ticker_data)
-
+    session.close()
     return jsonify(data)
 
 if __name__ == '__main__':

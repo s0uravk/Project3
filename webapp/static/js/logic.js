@@ -17,12 +17,19 @@ function optionChanged(){
     createChart(response, selDataset);
   })
 }
-//temporary arr object to hold ticker values
-tickers = ["WD", "PFSI", "LDI", "GHI", "COOP", "AFL", "HIG", "PRU", "ALL", "PGR", "MS", "BLK", "GS", "TROW", "BEN", "V", "MA", "AXP", "DFS", "COF"];
 
-tickers.forEach(ticker => {
-  d3.select('#selDataset').append('option').text(ticker).attr('value', ticker)
-})
+d3.json('/api/v1.0/summary').then(response =>{
+
+  console.log('Start processing')
+  tickers = response.map(row => row.Ticker);
+  console.log(response.map(row => row.Ticker))
+  tickers.forEach(ticker => {
+    d3.select('#selDataset').append('option').text(ticker).attr('value', ticker)
+  });
+  console.log('Finished processing')
+
+});
+
 
 function createChart(data, dataset){
     let dps1 = []
@@ -100,7 +107,6 @@ function infoPanel(dataset){
 
   d3.json(summaryUrl).then(response =>{
 
-    console.log(response)
     // Extracting keys and values for the selected dataset
     let demoArrKey = Object.keys(response.filter(data => data.Ticker == dataset)[0]);
     let demoArrVal = Object.values(response.filter(data => data.Ticker == dataset)[0]);   
