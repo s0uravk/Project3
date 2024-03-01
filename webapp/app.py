@@ -1,12 +1,9 @@
 # Import the dependencies.
 
-import numpy as np
-import pandas as pd
-from datetime import datetime, timedelta
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine,inspect, func
+from sqlalchemy import create_engine
 from flask import Flask, json, jsonify, render_template
 from config import username, password, host_address
 

@@ -7,7 +7,7 @@ d3.json(url1).then(function(response) {
     const sectors = [...new Set(response.map(entry => entry.Sector))];
     
     // Populate dropdown menu with sectors
-    const dropdown = document.getElementById('selDataset');
+    const dropdown = document.getElementById('selDataset1');
     sectors.forEach(sector => {
         const option = document.createElement('option');
         option.text = sector;

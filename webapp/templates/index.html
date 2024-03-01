@@ -14,16 +14,49 @@
   <!-- Heatmap library -->
   <script src="https://unpkg.com/heatmap.js"></script>
 
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+  <!-- Our CSS -->
+  <link rel="stylesheet" type="text/css" href="static/css/style.css">
 </head>
 <body>
-  <h1>Stock Correlation Heatmap</h1>
-  <div class="row">
-        <h3>Industry</h3>
-        <select id="selDataset" onchange="optionChanged(this.value)"></select>
-          <div id="heatmap" style="width: 800px; height: 600px;"></div>
-  </div>  
 
+  <!-- Jumbotron script -->
+  <div class="p-5 mb-4 bg-body-tertiary rounded-3">
+    <div class="container-fluid py-5">
+      <h1 class="display-5 fw-bold mx-auto text-center">Correlation Heatmap</h1>
+
+      <div class="row">
+        <div class = "col-2"></div>
+
+          <p class="col-8 fs-5">Correlation is a statistical measure that expresses the extent to which two variables are linearly related (meaning they change together at a constant rate). It’s a common tool for describing simple relationships without making a statement about cause and effect.
+            <br>This visualization depicts the correlation between close price of stocks between Industries within a Sector.</p>
+        
+            <div class = "col-2"></div>
+      </div>
+
+
+      <div class="container1"></div>
+        <div class="row">
+
+          <div class = "col-3 mx-auto text-center">
+            <h5>Industry: </h5>
+              <select id="selDataset1" onchange="optionChanged(this.value)"></select>
+          </div>
+
+          <div class = "col-9 mx-auto text-center">
+              <div id="heatmap" style="width: 800px; height: 600px;"></div>
+          </div>        
+        </div>  
+      </div>
+    </div>
+  </div>
+  
   <script src="{{url_for('static', filename = 'js/logic1.js')}}"></script>
+  
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 
 </html>
