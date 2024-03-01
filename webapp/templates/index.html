@@ -1,27 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Stock Data Analysis</title>
-
-  <!-- D3 library -->
-  <script src="https://d3js.org/d3.v7.min.js"></script>
-
-  <!-- Plotly Library -->
-  <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
-  <script src ="https://cdn.jsdelivr.net/npm/d3@7"></script>
-
-  <!-- Our CSS -->
-  <link rel="stylesheet" type="text/css" href="static/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Basic Charts</title>
+    <!-- Plotly Library -->
+    <script src="https://cdn.plot.ly/plotly-2.29.1.min.js" charset="utf-8"></script>
+    <script src ="https://cdn.jsdelivr.net/npm/d3@7"></script>
 </head>
 <body>
   <div class="container">    
-
-  <!-- The div that holds our map -->
-  <div id="line_chart"></div>
-</div>
+  <!-- chart  -->
+  <div id="plotly-chart"></div>
+  <!-- D3 -->
+  <script src="https://d3js.org/d3.v7.min.js"></script>
   <!-- Our JavaScript file -->
-  <script src="{{url_for('static', filename = 'js/logic.js')}}"></script>
+  <script src="../static/js/logic.js"></script>
 </body>
-
 </html>
+

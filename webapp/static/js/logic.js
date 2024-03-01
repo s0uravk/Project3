@@ -1,39 +1,62 @@
 url = '/api/v1.0/stock_data'
+
+close_prices = []
+dates = []
 d3.json(url).then(function (response){
+    response.forEach(element=>close_prices.push(element.Close))
+    response.forEach(element=>dates.push(element.Date))
+    // console.log(dates)
+    rollingAverage(response)
+    })
 
-   createChart(response)
-})
+// Sample data
+var values = close_prices
 
-function createChart(data){
-    let date = []
-    let close = []
-
-    data.forEach(element => {
-        date.push(element.Date);
-        close.push(element.Close);
-    });
-
-    let trace1 = {
-        x: date,
-        y: close,
-        name: 'Close',
-        text: data.map(value => 'Close: ' + value.Close + ' Ticker: ' + value.Ticker),
-        mode: 'lines' // Include markers for clarity
-    };
-
-    let layout = {
-        title: 'Close Price by Year',
-        xaxis: { 
-            title: 'Year',
-            tickmode: 'linear', // Use linear tick mode
-            dtick: 1, // Set the tick interval to 1 (one year)
-            tick0: date[0], // Set the starting tick to the first year in the dataset
-            tickformat: '%Y' // Format tick labels as four-digit years
-        },
-        yaxis: { title: 'Close Price' }
-    };
-    
-    let plot = [trace1]
-
-    Plotly.newPlot('line_chart', plot, layout)
+// Calculate rolling average
+function rollingAverage(data, windowSize) {
+var result = [];
+for (var i = 0; i < data.length; i++) {
+    var sum = 0;
+    var count = 0;
+    for (var j = Math.max(0, i - windowSize + 1); j <= i; j++) {
+    sum += data[j];
+    count++;
+    }
+    result.push(sum / count);
 }
+return result;
+}
+
+// Calculate rolling average with window size of 3
+var rollingAvgValues = rollingAverage(values, 3);
+
+// Create Plotly trace for original data
+var trace1 = {
+x: dates,
+y: values,
+mode: 'lines',
+name: 'Original Data'
+};
+
+// Create Plotly trace for rolling average data
+var trace2 = {
+x: dates,
+y: rollingAvgValues,
+mode: 'lines',
+name: 'Rolling Average (window size = 3)'
+};
+
+// Plot the data
+var data = [trace1, trace2];
+
+var layout = {
+title: 'Original Data and Rolling Average',
+xaxis: {
+    title: 'Date'
+},
+yaxis: {
+    title: 'Value'
+}
+};
+
+Plotly.newPlot('plotly-chart', data, layout);

@@ -25,7 +25,9 @@ Base.prepare(autoload_with = engine)
 # Print the table names
 print(Base.classes.keys())
 
-Stocks = Base.classes.Stocks
+Stocks = Base.classes.Final_Data
+Summary = Base.classes["Summary"]
+# total_volume = Base.classes["Total_Volume"]
 
 app = Flask(__name__)
 
