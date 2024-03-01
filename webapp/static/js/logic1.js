@@ -95,7 +95,8 @@ function plotHeatmap(labels, correlationMatrix) {
     const layout = {
         title: 'Correlation Heatmap',
         xaxis: { title: 'Industries' },
-        yaxis: { automargin: true}
+        yaxis: { automargin: true}, 
+        paper_bgcolor:'white'
     };
 
     Plotly.newPlot('heatmap', data, layout);
