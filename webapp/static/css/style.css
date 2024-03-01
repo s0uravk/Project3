@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f7f7f7;
+  background-color:  rgb(255, 255, 255);
 }
 
 .container {
@@ -16,6 +16,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  padding-top: 20px;
 }
 
 .col-2, .col-10 {
@@ -31,29 +32,31 @@ body {
   width: 100%;
   padding: 10px;
   font-size: 16px;
-  border: 2px solid #007bff;
+  border: 2px solid rgb(31, 75, 82);
   border-radius: 5px;
-  background-color: #f9f9f9;
+  background-color: rgb(31, 75, 82);
   margin-bottom: 20px;
-  color: #007bff;
+  color:rgb(179, 245, 216);
   outline: none;
 }
 
 #selDataset option {
-  background-color: white;
+  background-color:rgb(31, 75, 82);
 }
 
 /* Info panel styles */
 #info {
   margin-top: 20px;
-  background-color: #fff;
-  padding: 20px;
+  background-color: rgb(31, 75, 82);
+  color: rgb(179, 245, 216);
+  padding: 30px;
   border-radius: 5px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 310px;
 }
 
 #info h4 {
-  color: #007bff;
+  color:  rgb(179, 245, 216);
 }
 
 /* Line chart styles */
@@ -77,4 +80,9 @@ body {
 
 .btn-primary:focus, .btn-primary.focus {
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
+
+.jumbotron{
+  background-color: rgb(31, 75, 82);
+  color: rgb(179, 245, 216);
 }

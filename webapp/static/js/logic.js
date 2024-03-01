@@ -22,9 +22,9 @@ d3.json('/api/v1.0/summary').then(response =>{
 
   console.log('Start processing')
   tickers = response.map(row => row.Ticker);
-  console.log(response.map(row => row.Ticker))
+  console.log(tickers)
   tickers.forEach(ticker => {
-    d3.select('#selDataset').append('option').text(ticker).attr('value', ticker)
+    d3.select('#selDataset').append('option').text(ticker).attr('value', ticker);
   });
   console.log('Finished processing')
 

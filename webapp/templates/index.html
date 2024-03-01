@@ -28,16 +28,35 @@
 </head>
 <body>
   <div class="container">    
+    
+    <div class = "row">
+      <div class="jumbotron">
+        <h1 class="display-4">Stock Insight Pro: Your Ultimate Stock Analysis Web App</h1>
+        <p class="lead">A webapp which analyze and visualize historical stock market data.</p>
+        <hr class="my-4">
+        <p>StockTrack Analyzer" is a sophisticated web application offering insightful visualizations
+           of historical stock data to aid investors in making informed decisions. Leveraging past
+            performance metrics such as average trading volume over the years and five-year stock 
+            performance trends, this platform provides users with valuable perspectives for assessing 
+            investment opportunities. While it doesn't offer real-time data or predictive analysis, 
+            "StockTrack Analyzer" focuses on illuminating historical patterns and trends to guide users
+             in understanding market dynamics and optimizing their investment strategies. Whether you're
+              a seasoned investor seeking deeper insights or a novice looking to learn from historical 
+              data, this platform equips you with the tools to navigate the stock market with clarity
+               and confidence.</p>
+        <p class="lead">
+      </p>
+      </div>
+
+    </div>
 
     <div class = "row">
       
       <div class="col-3">
-        <!-- The div that holds Selection panel -->
-        <div>
-          <h5>Ticker : </h5>
-          <select id = 'selDataset' onchange = "optionChanged(this.value)"></select>
-        </div>
+        <select id = 'selDataset' onchange = "optionChanged(this.value)"></select> 
+      
         <div id = 'info'></div>
+
       </div>
 
       <div class="col-9">
