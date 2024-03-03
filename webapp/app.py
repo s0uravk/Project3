@@ -42,7 +42,9 @@ def stock_data():
         Stocks.High,
         Stocks.Low,
         Stocks.Close,
-        Stocks.Volume
+        Stocks.Volume,
+        Stocks.Sector,
+        Stocks.Industry
         ]
     
     rawData = session.query(*sel)
@@ -58,7 +60,9 @@ def stock_data():
             'High' : d.High,
             'Low' : d.Low,
             'Close' : d.Close,
-            'Volume' : d.Volume
+            'Volume' : d.Volume,
+            'Industry' : d.Industry,
+            'Sector' : d.Sector            
         }
         ls.append(data)
     
@@ -76,7 +80,9 @@ def rangeData(ticker, start, end):
         Stocks.High,
         Stocks.Low,
         Stocks.Close,
-        Stocks.Volume
+        Stocks.Volume,
+        Stocks.Sector,
+        Stocks.Industry
         ]
     
     rawData = session.query(*sel).filter(Stocks.Ticker == ticker).filter(Stocks.Date >= start).filter(Stocks.Date <= end)
@@ -94,7 +100,9 @@ def rangeData(ticker, start, end):
             'High' : d.High,
             'Low' : d.Low,
             'Close' : d.Close,
-            'Volume' : d.Volume
+            'Volume' : d.Volume,
+            'Industry' : d.Industry,
+            'Sector' : d.Sector
         }
         ls.append(data)
     
@@ -110,7 +118,9 @@ def summaryData():
         Summary.Final_Close,
         Summary.Total_Change,
         Summary.Percentage_Change,
-        Summary.Average_Volume
+        Summary.Average_Volume,
+        Summary.Sector,
+        Summary.Industry
         ]
     
     rawData = session.query(*sel)
@@ -127,7 +137,9 @@ def summaryData():
             'Final Close' : d.Final_Close,
             'Total Change' : round(d.Total_Change,2),
             'Percentage Change' : f'{round(d.Percentage_Change,2)}%',
-            'Average Volume' : round(d.Average_Volume,2)
+            'Average Volume' : round(d.Average_Volume,2),
+            'Industry' : d.Industry,
+            'Sector' : d.Sector
         }
         ls.append(data)
     
