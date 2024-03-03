@@ -1,7 +1,8 @@
 DROP TABLE IF EXISTS "Total_Volume";
 
 CREATE TABLE "Total_Volume"(
-    year INT,
+    id serial PRIMARY KEY,
+	year INT,
     ticker VARCHAR(6),
     total_volume FLOAT
 );
@@ -13,4 +14,4 @@ FROM
 GROUP BY DATE_PART('year', "Date"), "Ticker"
 ORDER BY total_volume desc;
 
--- SELECT * FROM "Total_Volume"
+SELECT * FROM "Total_Volume"
