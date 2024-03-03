@@ -16,34 +16,13 @@ d3.json(url1).then(function(response) {
 
     // Listen for changes in the dropdown menu
     dropdown.addEventListener('change', function() {
-        const selectedSector = dropdown.value;
-        const filteredData = response.filter(entry => entry.Sector === selectedSector);
-        
-        // Extract close prices for each industry within the selected sector
-        const industries = [...new Set(filteredData.map(entry => entry.Industry))];
-        const industryData = {};
-        industries.forEach(industry => {
-            industryData[industry] = [];
-        });
-
-        // Populate arrays with close prices for each industry
-        filteredData.forEach(entry => {
-            industryData[entry.Industry].push(entry.Close);
-        });
-
-        // Verify total length of all arrays
-        const totalLength = Object.values(industryData).reduce((acc, arr) => acc + arr.length, 0);
-        console.log('Total length of arrays:', totalLength);
-
-        // Calculate the correlation matrix
-        const correlationMatrix = calculateCorrelationMatrix(Object.values(industryData));
-    
-        // Plot heatmap using Plotly.js
-        plotHeatmap(industries, correlationMatrix);
+        plotHeatmapForSelectedSector(response);
     });
-}).catch(function(error) {
-    console.error('Error fetching data:', error);
+
+    // Call init function to show heatmap for the first option in dropdown
+    init(response);
 });
+
 
 // Define the optionChanged function
 function optionChanged(selectedValue) {
@@ -51,6 +30,41 @@ function optionChanged(selectedValue) {
     // console.log('Selected value:', selectedValue);
 }
 
+// Initialize the visualization
+function init(data) {
+    // Get the first option in the dropdown
+    const firstOption = document.getElementById('selDataset1').getElementsByTagName('option')[0].value;
+    const filteredData = data.filter(entry => entry.Sector === firstOption);
+    
+    // Plot heatmap for the first option
+    plotHeatmapForSelectedSector(filteredData);
+}
+
+// Plot heatmap for the selected sector
+function plotHeatmapForSelectedSector(data) {
+    const selectedSector = document.getElementById('selDataset1').value;
+    const filteredData = data.filter(entry => entry.Sector === selectedSector);
+    
+    // Extract close prices for each industry within the selected sector
+    const industries = [...new Set(filteredData.map(entry => entry.Industry))];
+    const industryData = {};
+    industries.forEach(industry => {
+        industryData[industry] = [];
+    });
+
+    // Populate arrays with close prices for each industry
+    filteredData.forEach(entry => {
+        industryData[entry.Industry].push(entry.Close);
+    });
+
+    // Calculate the correlation matrix
+    const correlationMatrix = calculateCorrelationMatrix(Object.values(industryData));
+
+    // Plot heatmap using Plotly.js
+    plotHeatmap(industries, correlationMatrix);
+}
+
+// Function to calculate correlation matrix
 function calculateCorrelationMatrix(data) {
     const correlationMatrix = [];
     for (let i = 0; i < data.length; i++) {
@@ -63,6 +77,7 @@ function calculateCorrelationMatrix(data) {
     return correlationMatrix;
 }
 
+// Function to calculate correlation coefficient
 function calculateCorrelation(x, y) {
     const minLength = Math.min(x.length, y.length); // Get the minimum length
 
@@ -84,6 +99,7 @@ function calculateCorrelation(x, y) {
     return correlation;
 }
 
+// Function to plot heatmap
 function plotHeatmap(labels, correlationMatrix) {
     const data = [{
         z: correlationMatrix,
