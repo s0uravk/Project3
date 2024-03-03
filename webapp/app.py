@@ -34,7 +34,8 @@ def stock_data():
     vol_data = [
     total_volume.year, 
     total_volume.ticker,
-    total_volume.total_volume
+    total_volume.total_volume,
+    total_volume.sector
 ]
     data = session.query(*vol_data)
 
@@ -44,12 +45,14 @@ def stock_data():
         data = {
         'Year' : d.year,
         'Ticker': d.ticker,
-        'Total_Volume': d.total_volume
+        'Total_Volume': d.total_volume,
+        'Sector': d.sector
         }
         vol_list.append(data)
     
     session.close()
     return(vol_list)
+    
 
 
 if __name__ == '__main__':
