@@ -20,12 +20,33 @@ Base = automap_base()
 Base.prepare(autoload_with = engine)
 
 total_volume = Base.classes["Total_Volume"] 
+stocks = Base.classes.Final_Data
 
 app = Flask(__name__)
 
 @app.route('/')
 def index():
     return render_template('index.html')
+
+@app.route('/api/v1.0/moving_average')
+def moving_average():
+    session = Session(bind = engine)
+    mv_data = [
+        stocks.Close,
+        stocks.Date
+    ]
+
+    data = session.query(*mv_data)
+
+    mv_list = []
+    for d in data:
+        data1 = {
+            "Date": d.Date,
+            "Close_Price": d.Close
+        }
+        mv_list.append(data1)
+    session.close()
+    return (jsonify(mv_list))
 
 @app.route('/api/v1.0/total_volume')
 def stock_data():
@@ -36,22 +57,22 @@ def stock_data():
     total_volume.ticker,
     total_volume.total_volume,
     total_volume.sector
-]
+    ]
     data = session.query(*vol_data)
 
     vol_list = []
 
     for d in data:
-        data = {
+        data1 = {
         'Year' : d.year,
         'Ticker': d.ticker,
         'Total_Volume': d.total_volume,
         'Sector': d.sector
         }
-        vol_list.append(data)
+        vol_list.append(data1)
     
     session.close()
-    return(vol_list)
+    return(jsonify(vol_list))
     
 
 
