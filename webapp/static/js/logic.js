@@ -52,7 +52,7 @@ function createGraphs(sector) {
     })
 }
 
-// Event listener for dropdown change
+// -------- DROPDOWN SELECT ----------
 var val = d3.select("#selSector").on("change", function() {
     var sector = d3.select(this).property("value");
     createGraphs(sector);
@@ -73,8 +73,8 @@ function populateDropdown(options) {
 let options = ['Automobiles', 'Finance', 'Technology', 'Healthcare']
 populateDropdown(options);
 
-
-createGraphs(sector)
+// ------- INITIAL CALL -------- (I hope this is fine?¿)
+createGraphs('Automobiles')
 
 function optionChanged(sector) {
     createGraphs(sector);
