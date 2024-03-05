@@ -28,7 +28,7 @@ body {
 }
 
 /* Selection panel styles */
-#selDataset {
+.selectCSS {
   width: 100%;
   padding: 10px;
   font-size: 16px;
@@ -39,8 +39,11 @@ body {
   color:rgb(179, 245, 216);
   outline: none;
 }
+.background-1 {
+  background-color : rgb(31, 75, 82);
+}
 
-#selDataset option {
+.selectCSS option {
   background-color:rgb(31, 75, 82);
 }
 

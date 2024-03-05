@@ -175,7 +175,7 @@ def moving_average():
     return (jsonify(mv_list))
 
 @app.route('/api/v1.0/stock_data/total_volume')
-def stock_data():
+def stock_volume():
     session = Session(bind = engine)
 
     vol_data = [

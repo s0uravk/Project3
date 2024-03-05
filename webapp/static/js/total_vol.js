@@ -73,9 +73,9 @@ function populateDropdown(options) {
 let options = ['Automobiles', 'Finance', 'Technology', 'Healthcare']
 populateDropdown(options);
 
-// ------- INITIAL CALL -------- (I hope this is fine?¿)
+// ------- INITIAL CALL --------
 createGraphs('Automobiles')
 
-function optionChanged(sector) {
+function optionChanged2(sector) {
     createGraphs(sector);
 };
