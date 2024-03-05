@@ -7,10 +7,16 @@ from sqlalchemy import create_engine,inspect, func
 from flask import Flask, json, jsonify, render_template
 from config import username, password, host_address
 
+
+#################################################
+# Database Setup
+#################################################
+
 cxn_string = f'postgresql+psycopg2://{username}:{password}@{host_address}/stock_analysis'
 # Create the SQLAlchemy engine
 engine = create_engine(cxn_string, echo = False)
 
+# reflect an existing database into a new model
 Base = automap_base()
 
 # Reflect all tables from the database schema
@@ -24,9 +30,52 @@ Summary = Base.classes.Summary
 
 app = Flask(__name__)
 
+
+# #################################################
+# # Flask Routes
+# #################################################
+
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+#the following route returns a JSON list of the close prices from the table
+@app.route('/api/v1.0/stock_data/close_price')
+def close_price():
+
+    # Create a session (link) from Python to the DB
+    session = Session(bind = engine)
+
+    sel = [
+        Stocks.Date,
+        Stocks.Ticker,
+        Stocks.Open,
+        Stocks.High,
+        Stocks.Low,
+        Stocks.Close,
+        Stocks.Volume,
+        Stocks.Sector,
+        Stocks.Industry
+        ]
+    
+    rawData = session.query(*sel)
+
+    data = {}
+    my_list = []
+
+    for d in rawData:
+        data = {
+            'Ticker' : d.Ticker,
+            'Date' : d.Date,
+            'Close' : d.Close,
+            'Industry' : d.Industry,
+            'Sector' : d.Sector            
+        }
+        my_list.append(data)
+
+    session.close()  
+    return(jsonify(my_list))
 
 @app.route('/api/v1.0/stock_data')
 def stock_data():
@@ -84,6 +133,8 @@ def rangeData(ticker, start, end):
     rawData = session.query(*sel).filter(Stocks.Ticker == ticker).filter(Stocks.Date >= start).filter(Stocks.Date <= end)
 
     session.close() 
+    
+    rawData = session.query(*sel)
 
     data = {}
     ls = []
@@ -143,4 +194,3 @@ def summaryData():
 
 if __name__ == '__main__':
     app.run(debug = True)
-    
