@@ -76,6 +76,6 @@ populateDropdown(options);
 // ------- INITIAL CALL -------- (I hope this is fine?¿)
 createGraphs('Automobiles')
 
-function optionChanged(sector) {
+function optionChanged2(sector) {
     createGraphs(sector);
 };
