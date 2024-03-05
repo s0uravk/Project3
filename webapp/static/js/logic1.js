@@ -25,7 +25,7 @@ d3.json(url1).then(function(response) {
 
 
 // Define the optionChanged function
-function optionChanged(selectedValue) {
+function optionChanged1(selectedValue) {
     // This function will be called when the dropdown selection changes
     // console.log('Selected value:', selectedValue);
 }
