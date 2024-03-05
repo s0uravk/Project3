@@ -5,6 +5,21 @@ body {
   padding: 0;
   background-color:  rgb(255, 255, 255);
 }
+.container1 {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+  
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col-2, .col-10 {
+  flex-basis: calc((100% - 30px) / 12 * 2);
+}
 
 .container {
   max-width: 1200px;
