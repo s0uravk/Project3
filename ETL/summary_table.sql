@@ -1,4 +1,5 @@
 -- Create Summary table
+DROP TABLE IF EXISTS "Summary";
 CREATE TABLE "Summary" AS
 SELECT subquery."Ticker",
 	   MAX(CASE WHEN "Date" = subquery."Start_Date" THEN "Open" END) AS "Initial_Open",
@@ -15,7 +16,8 @@ FROM
 	 FROM "Final_Data" 
 	 GROUP BY "Ticker") AS subquery
 	JOIN "Final_Data" ON "Final_Data"."Ticker" = subquery."Ticker"
-GROUP BY subquery."Ticker","Final_Data"."Sector", "Final_Data"."Industry";
+GROUP BY subquery."Ticker","Final_Data"."Sector", "Final_Data"."Industry"
+ORDER BY subquery."Ticker";
 	
 -- Add the id column as SERIAL
 ALTER TABLE "Summary"

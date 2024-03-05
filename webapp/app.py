@@ -1,8 +1,5 @@
 # Import the dependencies.
 
-import numpy as np
-import pandas as pd
-from datetime import datetime, timedelta
 import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
@@ -48,7 +45,7 @@ def stock_data():
         ]
     
     rawData = session.query(*sel)
-
+    session.close()  
     data = {}
     ls = []
 
@@ -66,7 +63,6 @@ def stock_data():
         }
         ls.append(data)
     
-    session.close()  
     return(jsonify(ls))
 
 @app.route('/api/v1.0/<ticker>/<start>/<end>')
@@ -143,7 +139,6 @@ def summaryData():
         }
         ls.append(data)
     
-    session.close()  
     return(jsonify(ls))
 
 if __name__ == '__main__':
