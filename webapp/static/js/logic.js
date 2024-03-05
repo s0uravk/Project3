@@ -20,7 +20,7 @@ function optionChanged(){
   })
 }
 //appending ticker to select tag
-d3.json('/api/v1.0/summary').then(response =>{
+d3.json('/api/v1.0/stock_data/summary').then(response =>{
 
   console.log('Start processing')
   tickers = response.map(row => row.Ticker);
@@ -105,7 +105,7 @@ function createChart(data, dataset){
 
 function infoPanel(dataset){
   
-  summaryUrl = '/api/v1.0/summary';
+  summaryUrl = '/api/v1.0/stock_data/summary';
 
   d3.json(summaryUrl).then(response =>{
 
