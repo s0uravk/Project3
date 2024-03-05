@@ -1,3 +1,4 @@
+//init function
 function init(){
   let url = '/api/v1.0/stock_data'
   d3.json(url).then(function (response){
@@ -7,6 +8,7 @@ function init(){
   })
 }
 
+//on change function
 function optionChanged(){
   let url = '/api/v1.0/stock_data'
   d3.json(url).then(function (response){
@@ -17,7 +19,7 @@ function optionChanged(){
     createChart(response, selDataset);
   })
 }
-
+//appending ticker to select tag
 d3.json('/api/v1.0/summary').then(response =>{
 
   console.log('Start processing')
