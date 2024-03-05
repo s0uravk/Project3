@@ -1,10 +1,9 @@
 # Import the dependencies.
 
-import sqlalchemy
 from sqlalchemy.ext.automap import automap_base
 from sqlalchemy.orm import Session
-from sqlalchemy import create_engine,inspect, func
-from flask import Flask, json, jsonify, render_template
+from sqlalchemy import create_engine
+from flask import Flask, jsonify, render_template
 from config import username, password, host_address
 
 
@@ -19,7 +18,7 @@ engine = create_engine(cxn_string, echo = False)
 # reflect an existing database into a new model
 Base = automap_base()
 
-# Reflect all tables from the database schema
+# Reflect all required tables from the database schema
 Base.prepare(autoload_with = engine)
 
 # Print the table names
@@ -27,6 +26,7 @@ print(Base.classes.keys())
 
 Stocks = Base.classes.Final_Data
 Summary = Base.classes.Summary
+total_volume = Base.classes["Total_Volume"] 
 
 app = Flask(__name__)
 
@@ -114,7 +114,7 @@ def stock_data():
     
     return(jsonify(ls))
 
-@app.route('/api/v1.0/<ticker>/<start>/<end>')
+@app.route('/api/v1.0/stock_data/<ticker>/<start>/<end>')
 def rangeData(ticker, start, end):
     session = Session(bind = engine)
 
@@ -135,7 +135,6 @@ def rangeData(ticker, start, end):
     session.close() 
     
     rawData = session.query(*sel)
-
     data = {}
     ls = []
 
@@ -152,10 +151,53 @@ def rangeData(ticker, start, end):
             'Sector' : d.Sector
         }
         ls.append(data)
-    
-    return(jsonify(ls))
+        
+@app.route('/api/v1.0/stock_data/moving_average')
+def moving_average():
+    session = Session(bind = engine)
+    mv_data = [
+        Stocks.Close,
+        Stocks.Date
+    ]
 
-@app.route('/api/v1.0/summary')
+    data = session.query(*mv_data)
+
+    mv_list = []
+    for d in data:
+        data1 = {
+            "Date": d.Date,
+            "Close_Price": d.Close
+        }
+        mv_list.append(data1)
+    session.close()
+    return (jsonify(mv_list))
+
+@app.route('/api/v1.0/stock_data/total_volume')
+def stock_data():
+    session = Session(bind = engine)
+
+    vol_data = [
+    total_volume.year, 
+    total_volume.ticker,
+    total_volume.total_volume,
+    total_volume.sector
+    ]
+    data = session.query(*vol_data)
+
+    vol_list = []
+
+    for d in data:
+        data1 = {
+        'Year' : d.year,
+        'Ticker': d.ticker,
+        'Total_Volume': d.total_volume,
+        'Sector': d.sector
+        }
+        vol_list.append(data1)
+    
+    return(jsonify(vol_list))
+
+@app.route('/api/v1.0/stock_data/summary')
 def summaryData():
     session = Session(bind = engine)
 
@@ -191,6 +233,7 @@ def summaryData():
         ls.append(data)
     
     return(jsonify(ls))
+
 
 if __name__ == '__main__':
     app.run(debug = True)
