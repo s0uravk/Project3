@@ -22,7 +22,8 @@ d3.json(url).then(function (response) {
     response.forEach(element => close_prices.push(element.Close_Price))
     response.forEach(element => dates.push(element.Date))
 
-    console.log(dates)
+    // dates.forEach(date => console.log(date))
+    console.log(response)
 
     // --------- PLOT GRAPHS ------------
     var trace1 = {
