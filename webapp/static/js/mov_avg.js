@@ -1,4 +1,4 @@
-url = '/api/v1.0/moving_average'
+url = '/api/v1.0/stock_data/moving_average'
 
 close_prices = []
 dates = []

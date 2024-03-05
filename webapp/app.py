@@ -151,6 +151,8 @@ def rangeData(ticker, start, end):
             'Sector' : d.Sector
         }
         ls.append(data)
+    
+    return(jsonify(ls))
         
 @app.route('/api/v1.0/stock_data/moving_average')
 def moving_average():

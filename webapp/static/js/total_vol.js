@@ -1,4 +1,4 @@
-url = '/api/v1.0/total_volume'
+url = '/api/v1.0/stock_data/total_volume'
 year = []
 ticker = []
 total_volume = []
