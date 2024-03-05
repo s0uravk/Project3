@@ -17,7 +17,7 @@ body {
     justify-content: space-between;
   }
   
-  .col-2, .col-10 {
+  .col-3, .col-9 {
     flex-basis: calc((100% - 30px) / 12 * 2);
   }
 
