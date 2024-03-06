@@ -29,7 +29,7 @@ function createGraphs(sector) {
             text: ticker.slice(0, 15),
             marker: {
                 color: total_volume.slice(0, 15),
-                colorscale: 'Oryel',
+                colorscale: 'Viridis',
                 colorbar: {
                     title: 'Volume', // Add a color bar title
                 }
@@ -39,7 +39,7 @@ function createGraphs(sector) {
         var data = [trace1];
 
         var layout = {
-            title: 'Highest Volume',
+            title: 'Stock Volumes',
             xaxis: {
                 title: 'Year'
             },
