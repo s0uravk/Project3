@@ -27,18 +27,17 @@ print(Base.classes.keys())
 Stocks = Base.classes.Final_Data
 Summary = Base.classes.Summary
 total_volume = Base.classes["Total_Volume"] 
-
-app = Flask(__name__)
-
+Industry_Volume = Base.classes.Industry_Volume
 
 # #################################################
 # # Flask Routes
 # #################################################
 
+app = Flask(__name__)
+
 @app.route('/')
 def index():
     return render_template('index.html')
-
 
 #the following route returns a JSON list of the close prices from the table
 @app.route('/api/v1.0/stock_data/close_price')
@@ -236,6 +235,27 @@ def summaryData():
     
     return(jsonify(ls))
 
+@app.route('/api/v1.0/stock_data/sector_volume')
+def sector_volume():
+    session = Session(bind = engine)
+    sel = [
+      	Industry_Volume.sector,
+        Industry_Volume.industry,
+	Industry_Volume.total_volume
+        ]
+    rawData = session.query(*sel)
+    session.close()
+    data = {}
+    ls = []
+    for d in rawData:
+        data = {
+            'Industry' : d.industry,
+            'Sector' : d.sector,
+	    'Total_Volume' : d.total_volume
+        }
+        ls.append(data)
+    return(jsonify(ls))
 
 if __name__ == '__main__':
     app.run(debug = True)
+    

@@ -33,7 +33,7 @@ d3.json('/api/v1.0/stock_data/summary').then(response =>{
 
 });
 
-
+//Candle stick chart
 function createChart(data, dataset){
     let dps1 = []
     let dps2 = []
@@ -103,7 +103,7 @@ function createChart(data, dataset){
     stockChart.render();
 
 };
-
+//Info Panel
 function infoPanel(dataset){
   
   summaryUrl = '/api/v1.0/stock_data/summary';

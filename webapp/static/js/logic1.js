@@ -20,7 +20,7 @@ d3.json(url1).then(function(response) {
     });
 
     // Call init function to show heatmap for the first option in dropdown
-    init(response);
+    init1(response);
 });
 
 
@@ -31,11 +31,12 @@ function optionChanged1(selectedValue) {
 }
 
 // Initialize the visualization
-function init(data) {
+function init1(data) {
     // Get the first option in the dropdown
     const firstOption = document.getElementById('selDataset1').getElementsByTagName('option')[0].value;
     const filteredData = data.filter(entry => entry.Sector === firstOption);
     
+    console.log(filteredData)
     // Plot heatmap for the first option
     plotHeatmapForSelectedSector(filteredData);
 }
