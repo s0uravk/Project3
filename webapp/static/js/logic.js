@@ -3,8 +3,9 @@ function init(){
   let url = '/api/v1.0/stock_data'
   d3.json(url).then(function (response){
 
-    infoPanel('AAPL')
-    createChart(response, 'AAPL');
+    let firstElement = d3.select('select').select('option').attr('value');
+    infoPanel(firstElement)
+    createChart(response, firstElement);
   })
 }
 
