@@ -1,2 +1,6 @@
 ETL/config.py
-ETL/raw_Healthcare_stock_data.csv
+ETL/raw_HealtETL/config.py
+Automotive.csv
+webapp/static/css/style.css
+webapp/config.py
+ETL/Financial_stock_data.csv
