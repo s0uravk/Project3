@@ -60,20 +60,27 @@ const data = {
 };
 
 window.myChart = new Chart(ctx, {
-  type :'doughnut',
-  data : data
-})
-// </block:setup>
-// <block:config:0>
-// const config = {
-//   type: 'doughnut',
-//   data: data,
-// };
-// // </block:config>
-// module.exports = {
-//   actions: [],
-//   config: config,
-// };
+  type: 'doughnut',
+  data: data,
+  options: {
+    plugins: {
+      tooltip: {
+        callbacks: {
+          label: function(context) {
+            var label = context.label || '';
+            var value = context.parsed || 0;
+            var total = context.dataset.data.reduce(function(acc, val) {
+              return acc + val;
+            });
+            var percentage = Math.round((value / total) * 100);
+            return label + ': ' + percentage + '%';
+          }
+        }
+      }
+    }
+  }
+});
+
   }
 
 init();
