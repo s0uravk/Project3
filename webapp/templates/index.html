@@ -77,9 +77,6 @@
     </div>
   </div>
 
-  <!-- Our JavaScript file -->
-  <script src="{{url_for('static', filename = 'js/logic.js')}}"></script>
-
   <!-- Jumbotron script -->
   <div class="p-5 mb-4 bg-body-white">
     <div class="container">
@@ -111,8 +108,6 @@
       </div>
     </div>
   </div>
-  
-  <script src="{{url_for('static', filename = 'js/logic1.js')}}"></script>
   
   <div class="container">
     
@@ -158,11 +153,6 @@
       </div>
     </div>
   </div>
-  
-  
-
-    <!-- Our JavaScript file -->
-    <script src="../static/js/total_vol.js"></script>
     
   </div>
 
@@ -188,8 +178,12 @@
       <canvas id = "myChart"></canvas>
     </div>
   </div>
-  <script src="{{url_for('static', filename = 'js/logic2.js')}}"></script>
   
+  <!-- Our JavaScript files -->  
+  <script src="{{url_for('static', filename = 'js/logic.js')}}"></script>   <!-- Candle Stick Chart -->
+  <script src="{{url_for('static', filename = 'js/logic2.js')}}"></script>  <!-- Doughnut Chart -->
+  <script src="{{url_for('static', filename = 'js/logic1.js')}}"></script>  <!-- Correlation Heatmap  -->
+  <script src="../static/js/total_vol.js"></script>                         <!-- Grouped Bar Chart -->
   
 </body>
 
