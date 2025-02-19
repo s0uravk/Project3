@@ -40,25 +40,25 @@
   <div class="container">    
     
     <div class = "row">
-      <div class="jumbotron rounded-5">
-        <h1 class="display-4">Stock Insight Pro: Your Ultimate Stock Analysis Web App</h1>
-        <p class="lead">A webapp which analyze and visualize historical stock market data.</p>
+      <div class="app-container">
+        <h1 class="app-name">StockVision</h1>
+        <p class="description">A webapp which analyzes historical stock market data and predicts future trends.</p>
+      </div>
+      <!-- <div class="jumbotron rounded-5">
+        <h1 class="display-4">StockVision</h1>
+        <p class="lead">A webapp which analyze historical stock market data and predict future trends.</p>
         <hr class="my-4">
-        <p>StockTrack Analyzer" is a sophisticated web application offering insightful visualizations
-           of historical stock data to aid investors in making informed decisions. Leveraging past
-            performance metrics such as average trading volume over the years and five-year stock 
-            performance trends, this platform provides users with valuable perspectives for assessing 
-            investment opportunities. While it doesn't offer real-time data or predictive analysis, 
-            "StockTrack Analyzer" focuses on illuminating historical patterns and trends to guide users
-             in understanding market dynamics and optimizing their investment strategies. Whether you're
-              a seasoned investor seeking deeper insights or a novice looking to learn from historical 
-              data, this platform equips you with the tools to navigate the stock market with clarity
-               and confidence.</p>
+        <p></p>
         <p class="lead">
       </p>
+      </div> -->
+    </div>
+    <div class = "row">
+      <div id="topGainersPanel">
+        <h3>Top Gainers</h3>
+        <ul id="topGainersList"></ul>
       </div>
     </div>
-
     <div class = "row">
       
       <div class="col-3">
@@ -69,10 +69,14 @@
 
       </div>
 
-      <div class="col-9">
+      <div class="col-6">
         <div style="color : white;">s</div>
         <!-- The div that holds our map -->
         <div id="line_chart"></div>
+      </div>
+      <div class="col-3">
+       <!-- The div that holds our map -->
+        <div id="news"></div>
       </div>
 
     </div>
@@ -185,10 +189,10 @@
   
   <!-- Our JavaScript files -->  
   <script src="{{url_for('static', filename = 'js/logic.js')}}"></script>   <!-- Candle Stick Chart -->
-  <script src="{{url_for('static', filename = 'js/logic2.js')}}"></script>  <!-- Doughnut Chart -->
+  <script src="{{url_for('static', filename = 'js/logic2.js')}}"></script>   <!--Doughnut Chart -->
   <script src="{{url_for('static', filename = 'js/logic1.js')}}"></script>  <!-- Correlation Heatmap  -->
-  <script src="../static/js/total_vol.js"></script>                         <!-- Grouped Bar Chart -->
-  
+  <script src="../static/js/total_vol.js"></script>                         <!-- Grouped Bar Chart
+ 
 </body>
 
 </html>

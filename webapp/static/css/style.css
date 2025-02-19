@@ -55,6 +55,20 @@ body {
   height: 310px;
 }
 
+#news h4 {
+  color:  rgb(179, 245, 216);
+}
+#news {
+  margin-top: 10px;
+  background-color: rgb(31, 75, 82);
+  color: rgb(179, 245, 216);
+  padding: 30px;
+  border-radius: 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 400px;
+  border: 1px solid #ccc;
+}
+
 #info h4 {
   color:  rgb(179, 245, 216);
 }
@@ -166,4 +180,57 @@ body {
 .jumbotron{
   background-color: rgb(31, 75, 82);
   color: rgb(179, 245, 216);
+}
+#topGainersPanel {
+  background-color: #f0f0f0;
+  padding: 10px;
+  border: 1px solid #ccc;
+}
+.gainerBlock {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px;
+  background-color: lightgreen;
+}
+.gainerSymbol {
+  color: green;
+  font-weight: bold;
+}
+@keyframes slideFromSide {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* Styling for the app container */
+.app-container {
+  width: 100%;
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(31, 75, 82); /* Change to your desired background color */
+  text-align: center;
+  color: rgb(179, 245, 216);
+}
+
+/* Styling for the app name and description */
+.app-name, .description {
+  font-weight: bold;
+  animation: slideFromSide 1s ease-out;
+}
+
+.app-name {
+  font-size: 5.5em; /* Larger text size for the app name */
+}
+
+.description {
+  font-size: 3.2em; /* Appropriate size for the description */
+  margin-top: 20px; /* Space between the app name and description */
 }
